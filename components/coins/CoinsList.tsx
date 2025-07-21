@@ -1,12 +1,27 @@
-import React from 'react'
-import { Text, View } from 'react-native'
+import { useCoins } from "@/hooks/useCoins";
+import React from "react";
+import { FlatList, Text } from "react-native";
+import CoinLoader from "../loader/CoinLoader";
+import CoinCard from "./CoinCard";
 
 const CoinsList = () => {
-  return (
-    <View>
-      <Text>CoinsList</Text>
-    </View>
-  )
-}
+  const { data, isLoading, isError } = useCoins();
 
-export default CoinsList
+  if (isLoading) return <CoinLoader />;
+  if (isError)
+    return <Text className="text-red-500">Error fetching coins.</Text>;
+
+  return (
+    <FlatList
+      data={data}
+      keyExtractor={(item) => item.id}
+      contentContainerStyle={{ gap: 12 }}
+      renderItem={({ item }) => (
+        <CoinCard coin={item} onPress={() => console.log(item.name)} />
+      )}
+      showsVerticalScrollIndicator={false}
+    />
+  );
+};
+
+export default CoinsList;

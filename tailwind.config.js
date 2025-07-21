@@ -24,6 +24,7 @@ module.exports = {
         danger: '#E53935',           
         highlight: '#A29BFE',        
         text: '#E0E0E0',  
+        inactive: '#d6d6d6'
       },
     },
   },
