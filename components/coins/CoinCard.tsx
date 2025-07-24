@@ -10,7 +10,7 @@ type Props = {
 
 export default function CoinCard({ coin, onPress }: Props) {
   const isPositive = coin.price_change_percentage_24h >= 0;
-// #3e426b96
+  // #3e426b96
   return (
     <Pressable
       onPress={onPress}

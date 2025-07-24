@@ -13,8 +13,21 @@ export interface CoinDetail {
   symbol: string;
   description: string;
   image: string;
+  homepage?: string;
   market_data: {
     price: number;
     change_24h: number;
+    high_24h?: number;
+    low_24h?: number;
+    market_cap?: number;
+    total_volume?: number;
+    ath?: number;
+    atl?: number;
+    circulating_supply?: number;
+    total_supply?: number;
+    price_change_percentage_1h?: number;
+    price_change_percentage_7d?: number;
+    price_change_percentage_30d?: number;
+    price_change_percentage_1y?: number;
   };
 }
