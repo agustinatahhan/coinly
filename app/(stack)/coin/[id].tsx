@@ -95,10 +95,17 @@ const CoinDetail = () => {
 
           {/* Key stats */}
 
-          <Text className="text-white font-bold text-xl mt-14 mb-4">
-            About {coin?.symbol}
-          </Text>
+          <View className="flex-row justify-between items-center mt-14 mb-4">
+            <Text className="text-white font-bold text-xl ">
+              About {coin?.symbol}
+            </Text>
+            <View className="flex-row justify-center items-center gap-1">
+            <Ionicons name="trophy-outline" size={20} color="#A29BFE" />
+            <Text className="text-white">{coin?.market_data?.market_cap_rank}</Text>
+            </View>
+          </View>
           <View className="flex-col gap-2 mt-2">
+            
             <CoinMarketCard
               title="Market Cap"
               value={`$${coin?.market_data.market_cap?.toLocaleString()}`}
@@ -144,7 +151,10 @@ const CoinDetail = () => {
           {/* Resources */}
           <View className="flex-row items-center gap-2 mt-4">
             <Ionicons name="link-outline" size={20} color="#A29BFE" />
-            <Link href={coin?.homepage} className="text-highlight text-lg font-bold">
+            <Link
+              href={coin?.homepage}
+              className="text-highlight text-lg font-bold"
+            >
               <Text>Resources</Text>
             </Link>
           </View>

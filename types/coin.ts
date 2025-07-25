@@ -20,6 +20,7 @@ export interface CoinDetail {
     high_24h?: number;
     low_24h?: number;
     market_cap?: number;
+    market_cap_rank?: number;
     total_volume?: number;
     ath?: number;
     atl?: number;
@@ -32,4 +33,13 @@ export interface CoinDetail {
     price_change_percentage_30d?: number;
     price_change_percentage_1y?: number;
   };
+}
+
+export interface CoinSearchResult {
+  id: string;
+  name: string;
+  symbol: string;
+  market_cap_rank: number;
+  thumb: string;
+  large: string
 }

@@ -1,4 +1,4 @@
-import { Coin, CoinDetail } from "@/types/coin";
+import { Coin, CoinDetail, CoinSearchResult } from "@/types/coin";
 import axios from "axios";
 
 const BASE_URL = "https://api.coingecko.com/api/v3";
@@ -58,6 +58,7 @@ export const fetchCoinById = async (id: string): Promise<CoinDetail> => {
         high_24h: data.market_data?.high_24h?.usd,
         low_24h: data.market_data?.low_24h?.usd,
         market_cap: data.market_data?.market_cap?.usd,
+        market_cap_rank: data.market_data?.market_cap_rank,
         total_volume: data.market_data?.total_volume?.usd,
         ath: data.market_data?.ath?.usd,
         atl: data.market_data?.atl?.usd,
@@ -81,3 +82,18 @@ export const fetchCoinById = async (id: string): Promise<CoinDetail> => {
     throw error;
   }
 };
+
+export const fetchCoinSearchResult = async( query: string): Promise<CoinSearchResult[]> => {
+  try {
+    if(!query) return [];
+    const { data } = await axios.get(`${BASE_URL}/search`, {
+      params: 
+      query
+    })
+
+    return data.coins;
+  } catch (error) {
+     console.error("Error in fetchCoinSearchResult:", error);
+    throw error;
+  }
+}

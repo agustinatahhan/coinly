@@ -5,7 +5,11 @@ import { FlatList, Text, View } from "react-native";
 import CoinLoader from "../loader/CoinLoader";
 import CoinCard from "./CoinCard";
 
-const CoinsList = () => {
+type Props = {
+  searchQuery: string;
+};
+
+const CoinsList = ({ searchQuery }: Props) => {
   const { data, isLoading, isError } = useCoins();
 
   if (isLoading) {
@@ -15,12 +19,20 @@ const CoinsList = () => {
       </View>
     );
   }
-  if (isError)
+
+  if (isError) {
     return <Text className="text-red-500">Error fetching coins.</Text>;
+  }
+
+  const filteredData = data?.filter(
+    (coin) =>
+      coin.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      coin.symbol.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <FlatList
-      data={data}
+      data={filteredData}
       keyExtractor={(item) => item.id}
       contentContainerStyle={{ gap: 12 }}
       renderItem={({ item }) => (
