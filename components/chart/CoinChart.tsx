@@ -9,7 +9,7 @@ interface CoinChartProps {
   color?: string;
 }
 
-const CoinChart = ({ data, color = "#00FFB3" }: CoinChartProps) => {
+const CoinChart = ({ data, color = "#5b8ff0" }: CoinChartProps) => {
   const Gradient = () => (
     <Defs key={"gradient"}>
       <LinearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">

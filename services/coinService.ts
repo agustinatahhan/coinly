@@ -61,12 +61,18 @@ export const fetchCoinById = async (id: string): Promise<CoinDetail> => {
         total_volume: data.market_data?.total_volume?.usd,
         ath: data.market_data?.ath?.usd,
         atl: data.market_data?.atl?.usd,
+        atl_date: data.market_data?.atl_date,
+        ath_date: data.market_data?.atl_date,
         circulating_supply: data.market_data?.circulating_supply,
         total_supply: data.market_data?.total_supply,
-        price_change_percentage_1h: data.market_data?.price_change_percentage_1h_in_currency?.usd,
-        price_change_percentage_7d: data.market_data?.price_change_percentage_7d_in_currency?.usd,
-        price_change_percentage_30d: data.market_data?.price_change_percentage_30d_in_currency?.usd,
-        price_change_percentage_1y: data.market_data?.price_change_percentage_1y_in_currency?.usd,
+        price_change_percentage_1h:
+          data.market_data?.price_change_percentage_1h_in_currency?.usd,
+        price_change_percentage_7d:
+          data.market_data?.price_change_percentage_7d_in_currency?.usd,
+        price_change_percentage_30d:
+          data.market_data?.price_change_percentage_30d_in_currency?.usd,
+        price_change_percentage_1y:
+          data.market_data?.price_change_percentage_1y_in_currency?.usd,
       },
       homepage: data.links?.homepage?.[0],
     };

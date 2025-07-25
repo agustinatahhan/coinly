@@ -23,6 +23,8 @@ export interface CoinDetail {
     total_volume?: number;
     ath?: number;
     atl?: number;
+    ath_date?: Date;
+    atl_date?: Date;
     circulating_supply?: number;
     total_supply?: number;
     price_change_percentage_1h?: number;

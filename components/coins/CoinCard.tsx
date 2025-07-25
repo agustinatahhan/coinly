@@ -14,7 +14,7 @@ export default function CoinCard({ coin, onPress }: Props) {
   return (
     <Pressable
       onPress={onPress}
-      className="flex-row items-center justify-between px-4 py-3 bg-[#35396496] rounded-xl mb-2 shadow-accent shadow-md"
+      className="flex-row items-center justify-between px-4 py-3 bg-[#35396496] rounded-xl mb-2 shadow-transparent"
       style={{ elevation: 4 }}
     >
       <View className="flex-row items-center">
