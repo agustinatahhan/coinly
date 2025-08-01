@@ -6,9 +6,16 @@ import { Image, Pressable, Text, View } from "react-native";
 type Props = {
   coin: Coin;
   onPress: () => void;
+  isFavorite?: boolean;
+  onToggleFavorite?: () => void;
 };
 
-export default function CoinCard({ coin, onPress }: Props) {
+export default function CoinCard({
+  coin,
+  onPress,
+  onToggleFavorite,
+  isFavorite,
+}: Props) {
   const isPositive = coin.price_change_percentage_24h >= 0;
   // #3e426b96
   return (
@@ -53,6 +60,15 @@ export default function CoinCard({ coin, onPress }: Props) {
           ${coin.current_price.toFixed(2)}
         </Text>
       </View>
+      {onToggleFavorite && (
+        <Pressable onPress={onToggleFavorite}>
+          <Ionicons
+            name={isFavorite ? "heart" : "heart-outline"}
+            size={24}
+            color={isFavorite ? "#f87171" : "#ccc"}
+          />
+        </Pressable>
+      )}
     </Pressable>
   );
 }

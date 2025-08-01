@@ -33,15 +33,6 @@ const TabsLayout = () => {
       }}
     >
       <Tabs.Screen
-        name="favorites/index"
-        options={{
-          title: "",
-          tabBarIcon: ({ color }) => (
-            <Ionicons size={28} name="heart-outline" color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
         name="home/index"
         options={{
           title: "",
@@ -50,6 +41,15 @@ const TabsLayout = () => {
           ),
         }}
       />
+        <Tabs.Screen
+          name="favorites/index"
+          options={{
+            title: "",
+            tabBarIcon: ({ color }) => (
+              <Ionicons size={28} name="heart-outline" color={color} />
+            ),
+          }}
+        />
     </Tabs>
   );
 };

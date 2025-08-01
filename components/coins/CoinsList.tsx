@@ -39,6 +39,7 @@ const CoinsList = ({ searchQuery }: Props) => {
         <CoinCard
           coin={item}
           onPress={() => router.push(`/(stack)/coin/${item.id}`)}
+          
         />
       )}
       showsVerticalScrollIndicator={false}

@@ -3,6 +3,7 @@ import CoinMarketCard from "@/components/coins/CoinMarketCard";
 import CoinLoader from "@/components/loader/CoinLoader";
 import { useCoinChart } from "@/hooks/useCoinChart";
 import { useCoinDetail } from "@/hooks/useCoins";
+import { useFavorites } from "@/hooks/useFavorites";
 import { Ionicons } from "@expo/vector-icons";
 import { Link, useLocalSearchParams } from "expo-router";
 import React, { useState } from "react";
@@ -17,7 +18,8 @@ const TIME_RANGES = [
 
 const CoinDetail = () => {
   const { id } = useLocalSearchParams();
-  const [range, setRange] = useState("1"); // default to 1D
+  const [range, setRange] = useState("1"); //default para 1 día
+  const { isFavorite, toggleFavorite } = useFavorites();
 
   const { data: coin, isLoading, isError } = useCoinDetail(id as string);
   const { data: chartData, isLoading: chartLoading } = useCoinChart(
@@ -46,9 +48,18 @@ const CoinDetail = () => {
       <ScrollView>
         <View className="flex-1 p-4 mx-2">
           {/* Header */}
-          <Text className="text-white font-bold text-3xl mt-4">
-            {coin?.name}
-          </Text>
+          <View className="flex-row justify-between items-center mt-4">
+            <Text className="text-white font-bold text-3xl ">
+              {coin?.name}
+            </Text>
+            <Pressable onPress={() => coin?.id && toggleFavorite(coin.id)}>
+              <Ionicons
+                name={isFavorite(coin?.id) ? "heart" : "heart-outline"}
+                size={28}
+                color={isFavorite(coin?.id) ? "#f87171" : "#ccc"}
+              />
+            </Pressable>
+          </View>
 
           <View className="flex-row items-center gap-2 mt-4">
             <Image source={{ uri: coin?.image }} className="w-12 h-12 mb-2" />
@@ -99,13 +110,12 @@ const CoinDetail = () => {
             <Text className="text-white font-bold text-xl ">
               About {coin?.symbol}
             </Text>
-            <View className="flex-row justify-center items-center gap-1">
+            {/* <View className="flex-row justify-center items-center gap-1">
             <Ionicons name="trophy-outline" size={20} color="#A29BFE" />
             <Text className="text-white">{coin?.market_data?.market_cap_rank}</Text>
-            </View>
+            </View> */}
           </View>
           <View className="flex-col gap-2 mt-2">
-            
             <CoinMarketCard
               title="Market Cap"
               value={`$${coin?.market_data.market_cap?.toLocaleString()}`}
@@ -113,12 +123,16 @@ const CoinDetail = () => {
             />
             <CoinMarketCard
               title="Circulating Supply"
-              value={`${coin?.market_data.circulating_supply?.toFixed(2)} ${coin?.symbol}`}
+              value={`${coin?.market_data.circulating_supply?.toFixed(2)} ${
+                coin?.symbol
+              }`}
               icon="repeat-outline"
             />
             <CoinMarketCard
               title="Total Supply"
-              value={`${coin?.market_data.total_supply?.toFixed(2)} ${coin?.symbol}`}
+              value={`${coin?.market_data.total_supply?.toFixed(2)} ${
+                coin?.symbol
+              }`}
               icon="cube-outline"
             />
             <CoinMarketCard
@@ -145,6 +159,11 @@ const CoinDetail = () => {
               title="All Time Low"
               value={`$${coin?.market_data.atl}`}
               icon="arrow-down-circle-outline"
+            />
+            <CoinMarketCard
+              title="Rank"
+              value={`${coin?.market_data.market_cap_rank}`}
+              icon="trophy-outline"
             />
           </View>
 
