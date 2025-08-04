@@ -9,7 +9,7 @@ const queryClient = new QueryClient();
 
 const RootLayout = () => {
   return (
-    <GestureHandlerRootView> 
+    <GestureHandlerRootView>
       <QueryClientProvider client={queryClient}>
         <Stack
           screenOptions={{
